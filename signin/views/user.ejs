@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <title>SignUp</title>
+  <link rel="stylesheet" href="/header.css">
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">食能管家</div>
+    <input type="checkbox" id="click">
+    <label for="click" class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </label>
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <li><a class="active" href="/user">User</a></li>
+      <li><a href="/about">About us</a></li>
+      <li><a href="/cal">Calculator</a></li>
+      <li><a href="/recipe">Recipe</a></li>
+      <li><a href="/">Log out</a></li>
+    </ul>
+  </nav>
+  <div class="content">
+    <div class="form-container">
+      <form action="/user" method="post">
+        <div class="form-group">
+          <label for="newPassword">newPassword:</label>
+          <input type="password" name="newPassword">
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" name="confirmPassword">
+        </div>
+        <div class="form-group">
+          <label for="age">年齡</label>
+          <input name="age" type="number" value="<%= userData.age %>">
+        </div>
+        <div class="form-group">
+          <label for="weight">體重</label>
+          <input name="weight" type="number" value="<%= userData.weight %>" >
+        </div>
+        <div class="form-group">
+          <label for="height">身高</label>
+          <input name="height" type="number" value="<%= userData.height %>" >
+        </div>
+        <div class="form-group">
+          <label for="exercise">活動量</label>
+          <select name="exercise" >
+            <option value="no"<%= userData.exercise === "no" ? "selected" : "" %>>久坐(沒運動)</option>
+            <option value="small"<%= userData.exercise === "small" ? "selected" : "" %>>輕度(每周運動1~3天)</option>
+            <option value="medium"<%= userData.exercise === "medium" ? "selected" : "" %>>中度(每周運動3~5天)</option>
+            <option value="large"<%= userData.exercise === "large" ? "selected" : "" %>>輕度(每周運動6~7天)</option>
+            <option value="extra"<%= userData.exercise === "extra" ? "selected" : "" %>>輕度(每天運動2次)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="goal">體態目標</label>
+          <select name="goal">
+            <option value="keep"<%= userData.goal === "keep" ? "selected" : "" %>>維持體重</option>
+            <option value="cut"<%= userData.goal === "cut" ? "selected" : "" %>>減脂</option>
+            <option value="cutLight"<%= userData.goal === "cutLight" ? "selected" : "" %>>輕度減脂</option>
+            <option value="bulk"<%= userData.goal === "bulk" ? "selected" : "" %>>增肌</option>
+            <option value="bulkLight"<%= userData.goal === "bulkLight" ? "selected" : "" %>>輕度增肌</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

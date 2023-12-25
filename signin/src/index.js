@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const excelModule = require(path.join(__dirname, "../../energy/food"));
 const collection = require("./config");
 const bcrypt = require('bcrypt');
 const session = require('express-session');
@@ -18,23 +19,71 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
     res.render("login");
 });
-
+app.get("/user", (req, res) => {
+    const userData = req.session.userData;
+    res.render("user", { userData });
+});
 app.get("/signup", (req, res) => {
     res.render("signup");
 });
-app.get("/cal", (req, res) => {
-     // Access user data from session
-     const userData = req.session.userData;
-    res.render("cal", {userData});
-});
-app.get("/recipe", (req, res) => {
-    // Access user data from session if needed
-    const calories = req.session.calories;
 
+app.get("/home",async(req, res) => {
+    const userData = req.session.userData;
+    res.render("home",{userData});
+})
+app.get("/about",async(req, res) => {
+    const userData = req.session.userData;
+    res.render("about",{userData});
+})
+app.get("/cal", async(req, res) => {
+    // Access user data from session if needed
+    const userData = req.session.userData;
+    const calories = calculator(userData);
+    const foodData = await excelModule.readExcel();
     // Render recipe.html and pass any necessary data
-    res.render("recipe", {calories });
+    res.render("cal", {calories, foodData});
+});
+app.get("/recipe", async(req, res) => {
+    const foodData = await excelModule.readExcel();
+    console.log("foodData:", foodData);
+    res.render("recipe", {foodData});
 });
 // Register User
+app.post("/user", async (req, res) => {
+    try {
+        // 取得表單提交的資料
+        const updatedData = {
+            password: req.body.password,
+            gender: req.body.gender,
+            age: req.body.age,
+            weight: req.body.weight,
+            height: req.body.height,
+            exercise: req.body.exercise,
+            goal: req.body.goal
+        };
+        if (req.body.newPassword && req.body.newPassword === req.body.confirmPassword) {
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(req.body.newPassword, saltRounds);
+            updatedData.password = hashedPassword;
+        }
+        // 更新使用者資料
+        const updatedUser = await collection.findOneAndUpdate(
+            { name: req.session.userData.name },
+            { $set: updatedData },
+            { new: true }
+        );
+
+        // 更新 session 中的使用者資料
+        req.session.userData = updatedUser;
+
+        // 重新導向到使用者首頁或其他適當的頁面
+        res.redirect("/home");
+    } catch (error) {
+        // 處理錯誤，例如顯示錯誤訊息或重新導向到錯誤頁面
+        console.error(error);
+        res.send("Error updating user data");
+    }
+});
 app.post("/signup", async (req, res) => {
 
     const data = {
@@ -66,14 +115,7 @@ app.post("/signup", async (req, res) => {
     }
 
 });
-app.post("/cal", async (req, res) => {
-    const userData = req.session.userData;
-    
-    if (!userData) {
-        // If userData is not found in session, redirect to login
-        res.redirect("/");
-        return;
-    } 
+function calculator(userData){
     const { gender, age, weight, height, goal, exercise } =  userData;
     let ans = 0;
 
@@ -106,11 +148,9 @@ app.post("/cal", async (req, res) => {
     }
     
     ans = Math.round(ans);
-    console.log("ans value:", ans);
-    req.session.calories = ans;
-    res.redirect("/recipe");
-        
-});
+    console.log(ans);
+    return ans;
+}
 
 // Login user 
 app.post("/login", async (req, res) => {
@@ -126,8 +166,7 @@ app.post("/login", async (req, res) => {
         }
         else {
             req.session.userData = check;
-            console.log("Redirecting to /cal");
-            res.redirect("/cal"); // Redirect to /cal route
+            res.redirect("/home"); // Redirect to /cal route
         }
     }
     catch {

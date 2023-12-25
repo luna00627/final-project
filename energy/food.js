@@ -17,7 +17,7 @@ for(let i=2; i<7; i++){
 const ExcelJS = require('exceljs');
 
 // 設定 Excel 文件的路徑
-const excelFilePath = 'C:/Users/USER/sign in/energy/read_excel/table.xlsx'; // 使用單斜線或雙斜線皆可"C:\Users\USER\sign in\
+const excelFilePath = '../energy/read_excel/table.xlsx'; // 使用單斜線或雙斜線皆可"C:\Users\USER\sign in\
 
 const readExcel = async () => {
   const workbook = new ExcelJS.Workbook();
@@ -43,16 +43,21 @@ const readExcel = async () => {
           熱量: row.getCell(5).text,
           
         };
-        data.push(rowData);
+        if (Object.values(rowData).some(value => value !== null && value !== undefined && value !== '')) {
+          data.push(rowData);
+        }
       }
     });
 
     // 輸出整理後的數據
-    console.log(data);
+    return data;
   } catch (error) {
     console.error('Error reading Excel file:', error.message);
   }
 };
 
 // 執行函式
-readExcel();
+//readExcel();
+module.exports = {
+  readExcel,
+};

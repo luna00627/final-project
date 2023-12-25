@@ -1,22 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="cal.css">
-    <title>Cal</title>
+    <title>食譜建議</title>
+
 </head>
+
 <body>
-    <h3>熱量計算機</h3>
-
-    <form action="/cal" method="post">
-        <button type="submit">
-            計算每日總消耗熱量
-        </button>
-    </form>
-
-    <div id="result" class="result">
-        卡路里
+  <nav>
+    <div class="logo">食能管家</div>
+    <input type="checkbox" id="click">
+    <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+    </label>
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/user">User</a></li>
+        <li><a href="/about">About us</a></li>
+        <li><a class="active" href="/cal">Calculator</a></li>
+        <li><a href="/recipe">Recipe</a></li>
+        <li><a href="/">Log out</a></li>
+    </ul>
+</nav>
+    <div class="content">
     </div>
+    <script >
+        const calories =  <%=calories%>;
+        console.log(calories);
+        if (calories) {
+            // 計算相應的食譜建議，這裡僅為示例，實際應用需根據需求定制
+            const protein = Math.round(calories * 0.3 / 4);
+            const fat = Math.round(calories * 0.28 / 9);
+            const carbohydrates = Math.round(calories * 0.42 / 4);
+
+            // 在 HTML 中顯示食譜建議
+            document.write("<p>建議攝取卡路里：" + calories + "卡</p>");
+            document.write("<p>建議攝取蛋白質：" + protein + "克</p>");
+            document.write("<p>建議攝取脂肪：" + fat + "克</p>");
+            document.write("<p>建議攝取碳水化合物：" + carbohydrates + "克</p>");
+
+            // 從後端獲取的食物數據（food.js的結果）
+            const foodData = JSON.parse('<%- JSON.stringify(foodData) %>');
+
+            console.log("foodData:", foodData);//
+            // 顯示三個套餐
+            let display="";
+            for (let i = 0; i < 3; i++) {
+                const randomIndex = Math.floor(Math.random() * foodData.length);
+                const selectedMeal = foodData[randomIndex];
+                console.log("selectedMeal:", selectedMeal);//
+                // 顯示所選套餐
+                display += "<h4>套餐 " + (i + 1) + "：</h4>";
+                display += "<p>主食：" + selectedMeal['主食'] + "</p>";
+                display += "<p>蛋白質：" + selectedMeal['蛋白質'] + "</p>";
+                display += "<p>蔬菜：" + selectedMeal['蔬菜'] + "</p>";
+                display += "<p>水果：" + selectedMeal['水果'] + "</p>";
+                display += "<p>熱量：" + selectedMeal['熱量'] + "</p>";
+                display += "<hr>";
+            }
+            document.querySelector('.content').innerHTML = display;
+        }
+    </script>
 </body>
+
 </html>
