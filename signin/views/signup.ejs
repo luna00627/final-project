@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>SignUp</h2>
+        <form action="/signup" method="post">
+          <div class="form-group">
+            <label for="name">帳號</label>
+            <input type="text" id="name" name="username" placeholder="Enter your name" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="password">password:</label>
+            <input type="password" id="password" name="password" placeholder="password" required>
+          </div>
+          <div class="form-group">
+            <label for="gender">生理性別</label>
+            <select id="gender" name="gender"required>
+                <option value = "boy">男</option>
+                <option value = "girl">女</option>
+          </div>
+          <div class="form-group">
+            <label for="age">年齡</label>
+            <input  name="age" type="number" placeholder="(歲)" id="age"required>
+          </div>
+          <div class="form-group">
+            <label for="weight">體重</label>
+            <input  name="weight" type="number" placeholder="(公斤)" id="weight"required>
+          </div>
+          <div class="form-group">
+            <label for="height">身高</label>
+            <input  name="height" type="number" placeholder="(公分)" id="height"required>
+          </div>
+          <div class="form-group">
+            <label for="exercise">活動量</label>
+            <select id="exercise" name="exercise"required>
+                <option value = "no">久坐(沒運動)</option>
+                <option value = "small">輕度(每周運動1~3天)</option>
+                <option value = "medium">中度(每周運動3~5天)</option>
+                <option value = "large">輕度(每周運動6~7天)</option>
+                <option value = "extra">輕度(每天運動2次)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="goal">體態目標</label>
+            <select id="goal" name="goal"required>
+                <option value = "keep">維持體重</option>
+                <option value = "cut">減脂</option>
+                <option value = "cutLight">輕度減脂</option>
+                <option value = "bulk">增肌</option>
+                <option value = "bulkLight">輕度增肌</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
+    
+</body>
+</html>

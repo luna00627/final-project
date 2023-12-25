@@ -1,0 +1,36 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+input, select, button {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 120%;
+    width: 200px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.result {
+    font-size: 120%;     
+    padding: 10px;
+    border: 3px solid #ddd;
+    width: 200px;
+    text-align: center;
+    box-sizing: border-box;
+ }
