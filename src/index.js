@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const excelModule = require(path.join(__dirname, "../../energy/food"));
+const excelModule = require(path.join(__dirname, "../energy/food"));
 const collection = require("./config");
 const bcrypt = require('bcrypt');
 const session = require('express-session');
