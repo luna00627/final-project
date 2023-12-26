@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const connect = mongoose.connect("mongodb://localhost:27017/Login-tut");
+const connect = mongoose.connect("mongodb+srv://Luna:991130627@cluster0.acuhmn8.mongodb.net/?retryWrites=true&w=majority");
 
 // Check database connected or not
 connect.then(() => {
