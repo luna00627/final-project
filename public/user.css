@@ -99,17 +99,46 @@ input[type="checkbox"]{
   }
 }
 .content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: -1;
   width: 100%;
-  padding: 0 30px;
+  padding: 30px 30px;
   color: #1b1b1b;
 }
-.text{
+.content div{
   font-size: 30px;
   font-weight: 700;
+}
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.form-group input,
+.form-group select {
+  width: 600px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+.submit-btn {
+  margin-top: 5px;
+  display: block;
+  width: 600px;
+  padding: 10px;
+  background-color: #472dbb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

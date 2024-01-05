@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
   <title>User</title>
-  <link rel="stylesheet" href="/header.css">
+  <link rel="stylesheet" href="/user.css">
 </head>
 
 <body>
@@ -53,10 +53,10 @@
           <label for="exercise">活動量</label>
           <select name="exercise" >
             <option value="no"<%= userData.exercise === "no" ? "selected" : "" %>>久坐(沒運動)</option>
-            <option value="small"<%= userData.exercise === "small" ? "selected" : "" %>>輕度(每周運動1~3天)</option>
-            <option value="medium"<%= userData.exercise === "medium" ? "selected" : "" %>>中度(每周運動3~5天)</option>
-            <option value="large"<%= userData.exercise === "large" ? "selected" : "" %>>輕度(每周運動6~7天)</option>
-            <option value="extra"<%= userData.exercise === "extra" ? "selected" : "" %>>輕度(每天運動2次)</option>
+            <option value="small"<%= userData.exercise === "small" ? "selected" : "" %>>少量(每周運動1~3天)</option>
+            <option value="medium"<%= userData.exercise === "medium" ? "selected" : "" %>>輕度(每周運動3~5天)</option>
+            <option value="large"<%= userData.exercise === "large" ? "selected" : "" %>>中度(每周運動6~7天)</option>
+            <option value="extra"<%= userData.exercise === "extra" ? "selected" : "" %>>重度(每天運動2次)</option>
           </select>
         </div>
         <div class="form-group">
