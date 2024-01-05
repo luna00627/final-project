@@ -25,6 +25,10 @@
             <li><a href="/about">About us</a></li>
             <li><a class="active" href="/cal">Calculator</a></li>
             <li><a href="/recipe">Recipe</a></li>
+            <li><a
+                    href="https://www.canva.com/design/DAF0rguy0XY/p-7yONiLvpr7pPfhJdhdtw/edit?utm_content=DAF0rguy0XY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"target="_blank">Slides
+                </a>
+            </li>
             <li><a href="/">Log out</a></li>
         </ul>
     </nav>
@@ -41,17 +45,17 @@
             let display = "";
 
             // 在 HTML 中顯示食譜建議
-            display +="<p>建議攝取卡路里：" + calories + "卡</p>"
-            display +="<p>建議攝取蛋白質：" + protein + "克</p>"
-            display +="<p>建議攝取脂肪：" + fat + "克</p>"
-            display +="<p>建議攝取碳水化合物：" + carbohydrates + "克</p>"
+            display += "<p>建議攝取卡路里：" + calories + "卡</p>"
+            display += "<p>建議攝取蛋白質：" + protein + "克</p>"
+            display += "<p>建議攝取脂肪：" + fat + "克</p>"
+            display += "<p>建議攝取碳水化合物：" + carbohydrates + "克</p>"
 
             // 從後端獲取的食物數據（food.js的結果）
             const foodData = JSON.parse('<%- JSON.stringify(foodData) %>');
 
             console.log("foodData:", foodData);//
             // 顯示三個套餐
-            
+
             display += "<div class='row'>";
             for (let i = 0; i < 3; i++) {
                 const randomIndex = Math.floor(Math.random() * foodData.length);

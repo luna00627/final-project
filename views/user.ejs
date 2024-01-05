@@ -23,6 +23,10 @@
       <li><a href="/about">About us</a></li>
       <li><a href="/cal">Calculator</a></li>
       <li><a href="/recipe">Recipe</a></li>
+      <li><a
+          href="https://www.canva.com/design/DAF0rguy0XY/p-7yONiLvpr7pPfhJdhdtw/edit?utm_content=DAF0rguy0XY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Slides
+        </a>
+      </li>
       <li><a href="/">Log out</a></li>
     </ul>
   </nav>
@@ -43,30 +47,30 @@
         </div>
         <div class="form-group">
           <label for="weight">體重</label>
-          <input name="weight" type="number" value="<%= userData.weight %>" >
+          <input name="weight" type="number" value="<%= userData.weight %>">
         </div>
         <div class="form-group">
           <label for="height">身高</label>
-          <input name="height" type="number" value="<%= userData.height %>" >
+          <input name="height" type="number" value="<%= userData.height %>">
         </div>
         <div class="form-group">
           <label for="exercise">活動量</label>
-          <select name="exercise" >
-            <option value="no"<%= userData.exercise === "no" ? "selected" : "" %>>久坐(沒運動)</option>
-            <option value="small"<%= userData.exercise === "small" ? "selected" : "" %>>少量(每周運動1~3天)</option>
-            <option value="medium"<%= userData.exercise === "medium" ? "selected" : "" %>>輕度(每周運動3~5天)</option>
-            <option value="large"<%= userData.exercise === "large" ? "selected" : "" %>>中度(每周運動6~7天)</option>
-            <option value="extra"<%= userData.exercise === "extra" ? "selected" : "" %>>重度(每天運動2次)</option>
+          <select name="exercise">
+            <option value="no" <%=userData.exercise==="no" ? "selected" : "" %>>久坐(沒運動)</option>
+            <option value="small" <%=userData.exercise==="small" ? "selected" : "" %>>少量(每周運動1~3天)</option>
+            <option value="medium" <%=userData.exercise==="medium" ? "selected" : "" %>>輕度(每周運動3~5天)</option>
+            <option value="large" <%=userData.exercise==="large" ? "selected" : "" %>>中度(每周運動6~7天)</option>
+            <option value="extra" <%=userData.exercise==="extra" ? "selected" : "" %>>重度(每天運動2次)</option>
           </select>
         </div>
         <div class="form-group">
           <label for="goal">體態目標</label>
           <select name="goal">
-            <option value="keep"<%= userData.goal === "keep" ? "selected" : "" %>>維持體重</option>
-            <option value="cut"<%= userData.goal === "cut" ? "selected" : "" %>>減脂</option>
-            <option value="cutLight"<%= userData.goal === "cutLight" ? "selected" : "" %>>輕度減脂</option>
-            <option value="bulk"<%= userData.goal === "bulk" ? "selected" : "" %>>增肌</option>
-            <option value="bulkLight"<%= userData.goal === "bulkLight" ? "selected" : "" %>>輕度增肌</option>
+            <option value="keep" <%=userData.goal==="keep" ? "selected" : "" %>>維持體重</option>
+            <option value="cut" <%=userData.goal==="cut" ? "selected" : "" %>>減脂</option>
+            <option value="cutLight" <%=userData.goal==="cutLight" ? "selected" : "" %>>輕度減脂</option>
+            <option value="bulk" <%=userData.goal==="bulk" ? "selected" : "" %>>增肌</option>
+            <option value="bulkLight" <%=userData.goal==="bulkLight" ? "selected" : "" %>>輕度增肌</option>
           </select>
         </div>
         <button type="submit" class="submit-btn">Submit</button>
